@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="header">
+    <ul class="nav nav-pills pull-right">
+    	<li ng-repeat="page in pages" ng-class="{active: isActive('{{ page.path }}')}">
+    		<a href="#{{ page.path }}">{{ page.name }}</a>
+    	</li>
+    </ul>
+    <h3 class="text-muted">fredek</h3>
+  </div>
+</div>
