@@ -298,6 +298,10 @@ module.exports = function (grunt) {
         singleRun: false
       },
       default: {},
+      ci: {
+        browsers: ['PhantomJS'],
+        singleRun: true
+      },
       single: {
         singleRun: true
       }
@@ -348,6 +352,14 @@ module.exports = function (grunt) {
     'autoprefixer',
     'connect:test',
     'karma:single'
+  ]);
+
+  grunt.registerTask('test:ci', [
+    'clean:server',
+    'concurrent:test',
+    'autoprefixer',
+    'connect:test',
+    'karma:ci'
   ]);
 
   grunt.registerTask('test', [

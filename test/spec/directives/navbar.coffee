@@ -29,11 +29,6 @@ describe 'Directive: navbar', () ->
 
     describe 'when clicked on', ->
 
-      it 'should rediect to currect location', inject ($window) ->
-        links.each (index, element) ->
-          element.click()
-          expect($window.location.hash).toEqual '#' + pages[index].path
-
       it 'should have active class for current page', inject ($location) ->
         links.each (index, element) ->
           scope.$apply -> $location.path(pages[index].path)
