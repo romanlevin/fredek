@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('fredekApp')
+angular.module('fredekApp.controllers')
   .controller 'AboutCtrl', ($scope) ->
     $scope.awesomeThings = [
       'HTML5 Boilerplate'

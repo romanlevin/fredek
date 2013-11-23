@@ -29,7 +29,8 @@ module.exports = function(config) {
       'app/views/**/*.html',
       'app/scripts/*.coffee',
       'app/scripts/**/*.coffee',
-      // 'test/mock/**/*.coffee',
+      'node_modules/jasmine-given/app/js/jasmine-given.coffee',
+      'test/mock/**/*.coffee',
       'test/spec/**/*.coffee',
     ],
 

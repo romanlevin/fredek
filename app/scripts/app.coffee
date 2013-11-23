@@ -1,9 +1,16 @@
 'use strict'
 
+angular.module('fredekApp.services', [])
+angular.module('fredekApp.directives', [])
+angular.module('fredekApp.controllers', [])
+
 angular.module('fredekApp', [
-  'ngCookies',
-  'ngSanitize',
+  'ngCookies'
+  'ngSanitize'
   'ngRoute'
+  'fredekApp.services'
+  'fredekApp.directives'
+  'fredekApp.controllers'
 ])
   .config ($routeProvider) ->
     $routeProvider
