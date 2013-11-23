@@ -1,42 +1,30 @@
 'use strict'
 
 describe 'Directive: navbar', () ->
-  beforeEach module 'fredekApp'
-  beforeEach module 'views/navbar.html'
+  Given module 'fredekApp.mock.services.pages'
+  Given module 'fredekApp.directives'
+  Given module 'views/navbar.html'
 
-  pages = {}
-  scope = {}
-  element = {}
-  links = {}
-
-
-  beforeEach inject ($rootScope, $compile, _pages_, _$location_) ->
-    pages = _pages_
+  Given inject ($rootScope, $compile, _$location_, _pages_) ->
+    @pages = _pages_
     element = angular.element '<navbar></navbar>'
-    scope = $rootScope.$new()
-    element = $compile(element) scope
-    scope.$digest()
-    links = element.find 'a'
+    @$scope = $rootScope.$new()
+    @element = $compile(element) @$scope
+    @$scope.$digest()
+    @links = @element.find 'a'
+    @$location = _$location_
 
   describe 'links', ->
+    Invariant -> @links.length == @pages.length
+    Invariant -> @links[@index].text == @pages[@index].name
 
-    it 'should exist for each page', ->
-      expect(links.length).toBe pages.length
+    When -> @index = 0
+    When -> @index = 1
+    When -> @index = 2
 
-    it 'should have the correct names', ->
-      links.each (index, element) ->
-        expect(element.text).toBe pages[index].name
-
-    describe 'when clicked on', ->
-
-      it 'should have active class for current page', inject ($location) ->
-        links.each (index, element) ->
-          scope.$apply -> $location.path(pages[index].path)
-          expect($(element).parent().hasClass('active')).toEqual true
-
-
-
-
-
-
-
+    describe 'are active for correct paths', ->
+      Invariant -> $(@links[@index]).parent().hasClass('active') == true
+      When -> @$scope.$apply -> @$location.path @pages[@index].path
+      Given -> @index = 0
+      Given -> @index = 1
+      Given -> @index = 2

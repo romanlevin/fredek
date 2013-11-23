@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('fredekApp')
+angular.module('fredekApp.directives')
   .directive 'navbar', ($location, pages)->
     templateUrl: 'views/navbar.html'
     restrict: 'E'
