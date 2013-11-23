@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('fredekApp')
+angular.module('fredekApp.services')
   .constant 'pages', [
     {name: 'Home', path: '/'}
     {name: 'About', path: '/about'}
