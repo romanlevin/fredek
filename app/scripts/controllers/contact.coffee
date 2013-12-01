@@ -1,6 +1,6 @@
 'use strict'
 
 angular.module('fredekApp.controllers')
-  .controller 'MainCtrl', ($scope, $http) ->
+  .controller 'ContactCtrl', ($scope, $http) ->
     $http.get('/api/awesomeThings').success (awesomeThings) ->
       $scope.awesomeThings = awesomeThings

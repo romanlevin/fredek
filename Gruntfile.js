@@ -55,6 +55,10 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.{coffee,litcoffee,coffee.md}'],
         tasks: ['newer:coffee:test', 'karma']
       },
+      compass: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+        tasks: ['compass:server', 'autoprefixer']
+      },
       livereload: {
         files: [
           '<%= yeoman.app %>/<%= yeoman.views %>/{,*//*}*.{html,jade}',
@@ -165,6 +169,33 @@ module.exports = function (grunt) {
     },
 
     
+    // Compiles Sass to CSS and generates necessary files if requested
+    compass: {
+      options: {
+        sassDir: '<%= yeoman.app %>/styles',
+        cssDir: '.tmp/styles',
+        generatedImagesDir: '.tmp/images/generated',
+        imagesDir: '<%= yeoman.app %>/images',
+        javascriptsDir: '<%= yeoman.app %>/scripts',
+        fontsDir: '<%= yeoman.app %>/styles/fonts',
+        importPath: '<%= yeoman.app %>/bower_components',
+        httpImagesPath: '/images',
+        httpGeneratedImagesPath: '/images/generated',
+        httpFontsPath: '/styles/fonts',
+        relativeAssets: false,
+        assetCacheBuster: false
+      },
+      dist: {
+        options: {
+          generatedImagesDir: '<%= yeoman.dist %>/images/generated'
+        }
+      },
+      server: {
+        options: {
+          debugInfo: true
+        }
+      }
+    },
 
     // Renames files for browser caching purposes
     rev: {
@@ -324,14 +355,17 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'coffee:dist',
+        'compass:server',
         'copy:styles'
       ],
       test: [
         'coffee',
+        'compass',
         'copy:styles'
       ],
       dist: [
         'coffee',
+        'compass:dist',
         'copy:styles',
         'imagemin',
         'svgmin',

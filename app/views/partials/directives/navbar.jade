@@ -1,0 +1,6 @@
+.container
+    .header
+        ul.nav.nav-pills.pull-right
+          li(ng-repeat='page in pages', ng-class='{active: isActive(\'{{ page.path }}\')}')
+            a(href='{{ page.path }}') {{ page.name }}
+        h3.text-muted fredek
