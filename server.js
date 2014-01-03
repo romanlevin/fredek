@@ -1,10 +1,10 @@
 'use strict';
+require('newrelic');
 
 // Module dependencies.
 var express = require('express'),
     path = require('path'),
     fs = require('fs');
-
 var app = express();
 
 // Connect to database
